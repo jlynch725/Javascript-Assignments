@@ -17,3 +17,7 @@ document.write(C + D);
 
 var E = "weight of car";       //A simple expression, assinging a variable is an example of an expression.// 
 
+var A = 10
+var B = 5
+var C = A * B
+document.write(C);
