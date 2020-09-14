@@ -15,6 +15,5 @@ var C = " First wake up and take a shower" //Concatenating by referencing two va
 var D = "Then eat breakfast"
 document.write(C + D);
 
-Var E = "weight of car";       //A simple expression, assinging a variable is an example of an expression.// 
+var E = "weight of car";       //A simple expression, assinging a variable is an example of an expression.// 
 
-<button onclick="displayDate()">The time is?</button>
