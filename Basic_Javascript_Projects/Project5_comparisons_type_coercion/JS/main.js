@@ -21,7 +21,7 @@ function neg_infinity_function() {
 }
 
 function True_function() {
-    document.getElementById("Test6").innerHTML = 10 > 2;       //Boolean examples with greater/less than symbol//
+    document.getElementById("Test6").innerHTML = 2 < 10;       //Boolean examples with greater/less than symbol//
 }
 
 function False_function() {
