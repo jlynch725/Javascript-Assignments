@@ -7,7 +7,7 @@ function Ride_Function() {
 
 function vote_Function() {
     var Age, Can_vote;
-    Height = document.getElementById("Age").value;
-    Can_vote = (Age < 18) ? "You can vote!":"You are old enough";
+    Age = document.getElementById("Age").value;
+    Can_vote = (Age < 18) ? "You are too young":"You are old enough";
     document.getElementById("vote").innerHTML = Can_vote + " to vote.";
 }
