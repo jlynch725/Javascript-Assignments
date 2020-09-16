@@ -17,7 +17,7 @@ function my_conditional_function() {            //creating my own conditional fu
     var x = 10;
     var a = 15;
     if ((x + a ) > 20) {
-        document.write("the product of x and a is greater than 20")
+        document.getElementById("my_conditional").innerHTML = "The product of x and a is greater than 20"
     }
 }
 
