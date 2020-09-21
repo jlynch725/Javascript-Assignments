@@ -75,4 +75,13 @@ function continue_function() {              //continue skips one iteraton in a l
     }
     document.getElementById("demo3").innerHTML = text;
 }
-       
+function while_Loop() {
+    var text =""
+    var i = 0;
+    do {
+        text += "<br> The number is " + i;
+        i++;
+    }
+    while (i < 10);
+    document.getElementById("demo4").innerHTML = text;
+}
