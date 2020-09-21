@@ -14,11 +14,11 @@ function placeXOrO(squareNumber) {
         //This condition checks who's turn it is. 
         if(activePlayer === 'x') {
             //if activePlayer is equal to X the x.png is placed in HTML
-            select.style.backgroundImage = 'url("images/x.png")';
+            select.style.backgroundImage = 'url("images/finalx.png")';
         //Actgive player may only be 'x' or 'o' so, if not 'x' it must be 'o'
         } else {
             //if activePlayer is equal to 'x', the x.png is placed in HTML.
-            select.style.backgroundImage = 'url("images/o.png")';
+            select.style.backgroundImage = 'url("images/finalo.png")';
         }
         //squareNumber and activePlayer are concatenated together and added to array.
         selectedSquares.push(squareNumber + activePlayer);
@@ -36,7 +36,7 @@ function placeXOrO(squareNumber) {
 
 
         //This function plays placement sound.
-        audio('./media/place.mp3');
+        audio('./media/poker-chips.wav');
         //This condition checks to see if it is computers turn.
         if(activePlayer === 'o') {
             //This function disable clicking for computer choice.
@@ -79,12 +79,12 @@ function placeXOrO(squareNumber) {
 function checkWinConditions() {
     //X O, 1, 2 condition.
     if (arrayIncludes('0x', '1x', '2x')) { drawWinLine(50, 100, 558, 100); }
-    else if (arrayIncludes('0x', '1x', '2x')) { drawWinLine(50, 304, 558, 304); }
-    else if (arrayIncludes('3x', '4x', '5x')) { drawWinLine(50, 508, 558, 508); }
-    else if (arrayIncludes('6x', '7x', '8x')) { drawWinLine(100, 50, 304, 558); }
-    else if (arrayIncludes('0x', '3x', '6x')) { drawWinLine(304, 50, 304, 558); }
-    else if (arrayIncludes('1x', '4x', '7x')) { drawWinLine(508, 50, 508, 558); }
-    else if (arrayIncludes('2x', '5x', '8x')) { drawWinLine(100, 508, 510, 90); }
+    else if (arrayIncludes('3x', '4x', '5x')) { drawWinLine(50, 304, 558, 304); }
+    else if (arrayIncludes('6x', '7x', '8x')) { drawWinLine(50, 508, 558, 508); }
+    else if (arrayIncludes('0x', '3x', '6x')) { drawWinLine(100, 50, 100, 558); }
+    else if (arrayIncludes('1x', '4x', '7x')) { drawWinLine(304, 50, 304, 558); }
+    else if (arrayIncludes('2x', '5x', '8x')) { drawWinLine(508, 50, 508, 558); }
+    else if (arrayIncludes('6x', '4x', '2x')) { drawWinLine(100, 508, 510, 90); }
     else if (arrayIncludes('0x', '4x', '8x')) { drawWinLine(100, 100, 520, 520); }
     else if (arrayIncludes('0o', '1o', '2o')) { drawWinLine(50, 100, 558, 100); }
     else if (arrayIncludes('3o', '4o', '5o')) { drawWinLine(50, 304, 558, 304); }
@@ -98,7 +98,7 @@ function checkWinConditions() {
     //and 9 squares are selected, the code executes.
     else if (selectedSquares.lenth >= 9) {
         //This condition plays the tie game sound.
-        Audio('./media/tie.mp3');
+        audio('./media/airplane-landing.wav');
         //This function sets a .3 second timer before the resetGame is called.
         setTimeout(function () { resetGame(); }, 1000);
     }
@@ -186,23 +186,37 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
             if (x >= x2 && y <= y2) { cancelAnimationFrame(animationLoop);}
         }
     }
-}
-//this function clears our canvas after our win line is drawn
-function clear() {
-    //This line starts our animation loop
-    const animationLoop = requestAnimationFrame(clear);
-    //this line clears our canvas.
-    c.clearRect(0, 0, 608, 608);
-    //this line stops our animation loop.
-    cancelAnimationFrame(animationLoop);
+
+    //this function clears our canvas after our win line is drawn
+    function clear() {
+        //This line starts our animation loop
+        const animationLoop = requestAnimationFrame(clear);
+        //this line clears our canvas.
+        c.clearRect(0, 0, 608, 608);
+        //this line stops our animation loop.
+        cancelAnimationFrame(animationLoop);
+    }
+
+    //this line disallows clicking while the win sound is playing
+    disableClick();
+    //this line plays with win sounds.
+    audio('./media/labrador-barking.mp3');
+    //this line calls our main animation loop.
+    animateLineDrawing();
+    //this line waits 1 second
+    //then, clears canvas, resets game, and allows clicking again. 
+    setTimeout(function () { clear(); }, 1000);
 }
 
-//this line disallows clicking while the win sound is playing
-disableClick();
-//this line plays with win sounds.
-audio('./media/winGame.mp3');
-//this line calls our main animation loop.
-animateLineDrawing();
-//this line waits 1 second
-//then, clears canvas, resets game, and allows clicking again. 
-setTimeout(function () { clear(); }, 1000);
+//this function resets the game in a tie or a win.
+function resetGame() {
+    //this for loop interates through each Html square element
+    for (let i = 0; i < 9; i++) {
+        //this variable gets the html element of i.
+        let square = document.getElementById(String(i));
+        //this removes our elements background images.
+        square.style.backgroundImage = '';
+    }
+    //this resets our array so it is empty and we can start over. 
+    selectedSquares = [];
+}

@@ -28,7 +28,7 @@ td {
 
 canvas {
     /* this property sets the position of our canvas to the top left corner of  our container.*/
-    position: absolut;
+    position: absolute;
     /*this property places our canvas over the top of our table */
     z-index: 10;
     /* this property makes our canvas invisible*/
