@@ -96,7 +96,7 @@ function checkWinConditions() {
     else if (arrayIncludes('0o', '4o', '8o')) { drawWinLine(100, 100, 520, 520); }
     //This condition checks for tie. if noe of the above conditions register
     //and 9 squares are selected, the code executes.
-    else if (selectedSquares.lenth >= 9) {
+    else if (selectedSquares.length >= 9) {
         //This condition plays the tie game sound.
         audio('./media/airplane-landing.wav');
         //This function sets a .3 second timer before the resetGame is called.
@@ -169,6 +169,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
         c.strokeStyle = 'rgba(70, 255, 22, .8)';
         //this method draws everthing we laid out above.
         c.stroke();
+        c.lineWidth = 10; 
         //this condition checks if we've reached the endpoint.
         if (x1 <= x2 && y1 <= y2) {
             //this condition adds 10 to the previous end x point. 
@@ -205,7 +206,7 @@ function drawWinLine(coordX1, coordY1, coordX2, coordY2) {
     animateLineDrawing();
     //this line waits 1 second
     //then, clears canvas, resets game, and allows clicking again. 
-    setTimeout(function () { clear(); }, 1000);
+    setTimeout(function () { clear(); resetGame(); }, 1000);
 }
 
 //this function resets the game in a tie or a win.
