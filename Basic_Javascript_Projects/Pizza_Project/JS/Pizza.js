@@ -49,8 +49,6 @@ function getTopping(runningTotal,text1,) {
     }
 
 
-   //Vegetable toppings
-
    
     runningTotal = (runningTotal + toppingTotal);
     console.log("total selected topping items; "+toppingCount);
