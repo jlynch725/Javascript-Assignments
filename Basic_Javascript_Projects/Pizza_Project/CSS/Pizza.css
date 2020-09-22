@@ -10,10 +10,10 @@
 }
 
 #totalPrice {
-    width:600px;
+    width:200px;
     height:200px;
     margin: 20px auto;
-    float: left;
+    float: right;
 }
 
 .left {
